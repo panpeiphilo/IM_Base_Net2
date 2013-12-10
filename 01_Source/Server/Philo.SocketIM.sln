@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerApplication", "MyServer\ServerApplication.csproj", "{4C53322B-1026-4BD9-9DC8-2890A95E2E54}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Philo.Messager", "Philo.Messager\Philo.Messager.csproj", "{42B19949-FF27-46D3-A42E-5D94AD2B8B0A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4C53322B-1026-4BD9-9DC8-2890A95E2E54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C53322B-1026-4BD9-9DC8-2890A95E2E54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C53322B-1026-4BD9-9DC8-2890A95E2E54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C53322B-1026-4BD9-9DC8-2890A95E2E54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42B19949-FF27-46D3-A42E-5D94AD2B8B0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42B19949-FF27-46D3-A42E-5D94AD2B8B0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42B19949-FF27-46D3-A42E-5D94AD2B8B0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42B19949-FF27-46D3-A42E-5D94AD2B8B0A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
