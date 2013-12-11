@@ -33,7 +33,7 @@ namespace MyServer
             IPEndPoint bindIp = new IPEndPoint(IPAddress.Any, 39999);
             serverSocket.Bind(bindIp);
             serverSocket.Listen(2000);
-            iClosed = true;
+            iClosed = false;
             listenConnectThread = new Thread(StartListenConnect);
             listenConnectThread.Start();
         }
@@ -41,7 +41,7 @@ namespace MyServer
         //开始监听连接
         private void StartListenConnect()
         {
-            while (iClosed)
+            while (!iClosed)
             {
                 try
                 {
@@ -54,7 +54,6 @@ namespace MyServer
                 catch (Exception ex)
                 {
                     iClosed = true;
-                    throw;
                 }
             }
         }
@@ -62,7 +61,7 @@ namespace MyServer
         //开始接受消息
         private void StartListenReceive(object clientid)
         {
-            while (iClosed)
+            while (!iClosed)
             {
                 Socket clientSocket = (Socket)clientList[clientid.ToString()];
                 try
@@ -93,15 +92,13 @@ namespace MyServer
                     AddUserToUserTable(message.SenderId);
                     SendUserList(message,clientSocket);
                     SendAllUserLogInOrOutMessage(message);//通知所有人登陆消息
-                    RefreshUserList();
-                    MessageBox.Show(message.SenderId + "已登录！");
+                    dgvUserList.Invoke(new RefreshLB(RefreshUserList));
                     break;
                 case MType.Logout:
                     CloseClient(message.SenderId);
                     SendAllUserLogInOrOutMessage(message);//通知所有人退出消息
                     RemoveUserFormUserTable(message.SenderId);
-                    RefreshUserList();
-                    MessageBox.Show(message.SenderId + "已退出！");
+                    dgvUserList.Invoke(new RefreshLB(RefreshUserList));
                     break;
                 case MType.Notice:
                     break;
@@ -113,6 +110,7 @@ namespace MyServer
                 default:
                     break;
             }
+            
         }
 
         //给所有人发送有人登陆的消息
@@ -120,7 +118,10 @@ namespace MyServer
         {
             foreach (var item in clientList)
             {
-                TcpMessager.SendTcpMessage((Socket)item.Value, message);
+                if (!item.Key.Equals(message.SenderId))
+                {
+                    TcpMessager.SendTcpMessage((Socket)item.Value, message);
+                }
             }
         }
 
@@ -179,6 +180,7 @@ namespace MyServer
         {
             tsmiStart.Enabled = iClosed;
             tsmiStop.Enabled = !iClosed;
+            dtUserList = InitUserTable();
         }
 
         //点击开始
@@ -187,9 +189,10 @@ namespace MyServer
             if (iClosed)
             {
                 StartServer();
-                tsmiStart.Enabled = !iClosed;
-                tsmiStop.Enabled = iClosed;
                 iClosed = false;
+                tsmiStart.Enabled = iClosed;
+                tsmiStop.Enabled = !iClosed;
+                
             }
         }
 
@@ -199,9 +202,10 @@ namespace MyServer
             if (!iClosed)
             {
                 StopListenConnect();
-                tsmiStart.Enabled = iClosed;
-                tsmiStop.Enabled = !iClosed;
                 iClosed = true;
+                tsmiStart.Enabled = !iClosed;
+                tsmiStop.Enabled = iClosed;
+                
             }
         }
 
@@ -232,11 +236,11 @@ namespace MyServer
                 }
             }
         }
-
+        private delegate void RefreshLB();
         private void RefreshUserList()
-        {
-            lbUserList.DataSource = dtUserList;
-            lbUserList.Refresh();
+        {            
+            dgvUserList.DataSource = dtUserList;
+            dgvUserList.Refresh();
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)

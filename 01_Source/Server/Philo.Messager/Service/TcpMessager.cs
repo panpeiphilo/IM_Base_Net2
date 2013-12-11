@@ -93,8 +93,16 @@ namespace Philo.Messager.Service
         {
             if (socket.Connected)
             {
-                int i = socket.Send(ConvertTcpMessageToBytes(message));
-                return i;
+                try
+                {
+                    int i = socket.Send(ConvertTcpMessageToBytes(message));
+                    return i;
+                }
+                catch (Exception)
+                {
+                   
+                }
+                return 0;
             }
             else
             {

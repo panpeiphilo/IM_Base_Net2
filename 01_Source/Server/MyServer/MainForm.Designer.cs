@@ -35,13 +35,14 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tssiServerStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.lbUserList = new System.Windows.Forms.ListBox();
             this.txtMessage = new System.Windows.Forms.TextBox();
+            this.dgvUserList = new System.Windows.Forms.DataGridView();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUserList)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -99,7 +100,7 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.lbUserList);
+            this.splitContainer1.Panel1.Controls.Add(this.dgvUserList);
             // 
             // splitContainer1.Panel2
             // 
@@ -107,16 +108,6 @@
             this.splitContainer1.Size = new System.Drawing.Size(784, 515);
             this.splitContainer1.SplitterDistance = 192;
             this.splitContainer1.TabIndex = 2;
-            // 
-            // lbUserList
-            // 
-            this.lbUserList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbUserList.FormattingEnabled = true;
-            this.lbUserList.ItemHeight = 12;
-            this.lbUserList.Location = new System.Drawing.Point(0, 0);
-            this.lbUserList.Name = "lbUserList";
-            this.lbUserList.Size = new System.Drawing.Size(192, 508);
-            this.lbUserList.TabIndex = 0;
             // 
             // txtMessage
             // 
@@ -126,6 +117,18 @@
             this.txtMessage.Name = "txtMessage";
             this.txtMessage.Size = new System.Drawing.Size(588, 515);
             this.txtMessage.TabIndex = 0;
+            // 
+            // dgvUserList
+            // 
+            this.dgvUserList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.dgvUserList.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgvUserList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvUserList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvUserList.Location = new System.Drawing.Point(0, 0);
+            this.dgvUserList.Name = "dgvUserList";
+            this.dgvUserList.RowTemplate.Height = 23;
+            this.dgvUserList.Size = new System.Drawing.Size(192, 515);
+            this.dgvUserList.TabIndex = 0;
             // 
             // MainForm
             // 
@@ -148,6 +151,7 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUserList)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -162,8 +166,8 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel tssiServerStatus;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.ListBox lbUserList;
         private System.Windows.Forms.TextBox txtMessage;
+        private System.Windows.Forms.DataGridView dgvUserList;
 
     }
 }
